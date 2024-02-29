@@ -106,10 +106,13 @@ public class MyArrayList<T> implements MyList<T> {
      *
      * @param index индекс элемента, который нужно удалить.
      * @return элемент, который был удален из списка.
-     * @throws IndexOutOfBoundsException если индекс выходит за пределы диапазона (индекс < 0 || индекс >= размер()).
+     * @throws IndexOutOfBoundsException если индекс выходит за пределы диапазона (index < 0 || index >= size()).
      */
     @Override
     public T remove(int index) {
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException();
+        }
         T element = array[index];
         System.arraycopy(array, index + 1, array, index, size - index - 1);
         size--;
